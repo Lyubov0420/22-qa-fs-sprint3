@@ -1,0 +1,35 @@
+package ru.yandex.praktikum.tests;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AssertionsTest {
+
+
+    @Test
+    void standartAssertions(){
+        assertEquals(2, 1+1);
+        assertTrue(5 > 4, "Или нет");
+        assertNull(null);
+    }
+    @Test
+    void groupedAssertions(){
+        String name = "John Doe";
+        assertAll("person",
+                () -> assertEquals("John", name.split(" ")[0]),
+                () -> assertEquals("Doe", name.split(" ")[1]));
+
+    }
+
+    @Test
+    void exeptionTesting(){
+        Exception exception = assertThrows(
+        ArithmeticException.class,
+                () -> {int i = 1 /0; }
+        );
+        assertEquals("/ by zero" , exception.getMessage());
+    }
+
+
+}
